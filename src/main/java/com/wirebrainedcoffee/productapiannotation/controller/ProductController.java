@@ -2,7 +2,6 @@ package com.wirebrainedcoffee.productapiannotation.controller;
 
 import java.time.Duration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +26,11 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/products")
 public class ProductController {
 
-	@Autowired
 	private ProductRepository repository;
+	
+	public ProductController(ProductRepository repository) {
+		this.repository = repository;
+	}
 
 	@GetMapping
 	public Flux<Product> getAllProducts() {
